@@ -1,4 +1,5 @@
 <?php 
+<<<<<<< HEAD
 // Use safe auth check (no redirect)
 require_once __DIR__.'/../../includes/auth-check-safe.php';
 
@@ -8,12 +9,68 @@ $extraJs=[
     'assets/js/pages/account-auth-guard.js',
     'assets/js/pages/profile.js'
 ];
+=======
+$pageTitle='Hồ sơ cá nhân'; 
+$extraCss=['../../assets/css/main.css', '../../assets/css/account.css']; 
+$extraJs=['../../assets/js/main.js', '../../assets/js/api.js', '../../assets/js/pages/profile.js'];
+>>>>>>> a73f32ac86b6117ce838a878ed6020a3bdfc17c3
 include __DIR__.'/../../includes/header.php'; 
 ?>
 
 <main class="account-main">
     <div class="container">
+<<<<<<< HEAD
         <div class="account-content">
+=======
+        <div class="account-layout">
+            <!-- Sidebar -->
+            <aside class="account-sidebar">
+                <div class="account-nav">
+                    <h3>Tài khoản</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="profile.php" class="nav-link active">
+                                <span class="nav-icon">👤</span>
+                                Hồ sơ cá nhân
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="orders.php" class="nav-link">
+                                <span class="nav-icon">📦</span>
+                                Đơn hàng
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="wishlist.php" class="nav-link">
+                                <span class="nav-icon">❤️</span>
+                                Danh sách yêu thích
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="wallet.php" class="nav-link">
+                                <span class="nav-icon">💰</span>
+                                Ví điện tử
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="reviews.php" class="nav-link">
+                                <span class="nav-icon">⭐</span>
+                                Đánh giá của tôi
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="settings.php" class="nav-link">
+                                <span class="nav-icon">⚙️</span>
+                                Cài đặt
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="account-content">
+>>>>>>> a73f32ac86b6117ce838a878ed6020a3bdfc17c3
                 <div class="account-header">
                     <h1>Hồ sơ cá nhân</h1>
                     <p>Cập nhật thông tin cá nhân của bạn</p>
@@ -190,8 +247,16 @@ include __DIR__.'/../../includes/header.php';
                         </form>
                     </div>
                 </div>
+<<<<<<< HEAD
+=======
+            </div>
+>>>>>>> a73f32ac86b6117ce838a878ed6020a3bdfc17c3
         </div>
     </div>
 </main>
 
 <?php include __DIR__.'/../../includes/footer.php'; ?>
+<<<<<<< HEAD
+=======
+<?php include __DIR__.'/../../includes/footer.php'; ?>
+>>>>>>> a73f32ac86b6117ce838a878ed6020a3bdfc17c3

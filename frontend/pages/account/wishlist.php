@@ -1,4 +1,5 @@
 <?php 
+<<<<<<< HEAD
 // Use safe auth check (no redirect)
 require_once __DIR__.'/../../includes/auth-check-safe.php';
 
@@ -8,16 +9,46 @@ $extraJs=[
     'assets/js/pages/account-auth-guard.js',
     'assets/js/pages/wishlist.js'
 ];
+=======
+$pageTitle='Sản phẩm yêu thích'; 
+$extraCss=['../../assets/css/main.css', '../../assets/css/account.css']; 
+$extraJs=['../../assets/js/main.js', '../../assets/js/api.js', '../../assets/js/pages/wishlist.js'];
+>>>>>>> a73f32ac86b6117ce838a878ed6020a3bdfc17c3
 include __DIR__.'/../../includes/header.php'; 
 ?>
 
 <main class="account-main">
     <div class="container">
+<<<<<<< HEAD
         <div class="account-content">
                 <div class="account-header">
                     <h1>Sản phẩm yêu thích</h1>
                     <p>Danh sách các sản phẩm bạn đã thêm vào yêu thích</p>
                 </div>
+=======
+        <div class="account-layout">
+            <aside class="account-sidebar">
+                <div class="sidebar-header">
+                    <img src="https://via.placeholder.com/80" alt="User Avatar" class="user-avatar" id="userAvatar">
+                    <div class="user-info">
+                        <h3 id="userName">Tên người dùng</h3>
+                        <p id="userEmail">email@example.com</p>
+                    </div>
+                </div>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="profile.php">Hồ sơ của tôi</a></li>
+                        <li><a href="orders.php">Đơn hàng của tôi</a></li>
+                        <li><a href="wishlist.php" class="active">Sản phẩm yêu thích</a></li>
+                        <li><a href="settings.php">Cài đặt tài khoản</a></li>
+                        <li><a href="#" id="logoutBtn">Đăng xuất</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <div class="account-content">
+                <h1>Sản phẩm yêu thích</h1>
+                <p class="section-description">Danh sách các sản phẩm bạn đã thêm vào yêu thích.</p>
+>>>>>>> a73f32ac86b6117ce838a878ed6020a3bdfc17c3
 
                 <!-- Wishlist Filters -->
                 <div class="wishlist-filters">
