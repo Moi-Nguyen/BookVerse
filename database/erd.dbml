@@ -1,0 +1,274 @@
+// Bookverse Database ERD
+// Generated for dbdiagram.io
+// Copy and paste this code into https://dbdiagram.io/
+
+Project Bookverse {
+  database_type: 'MongoDB'
+  Note: 'E-commerce platform for books with multi-seller support'
+}
+
+Table users {
+  _id ObjectId [pk]
+  username varchar [unique, not null]
+  email varchar [unique, not null]
+  password varchar [not null]
+  role varchar [default: 'user'] // user, seller, admin
+  profile_firstName varchar
+  profile_lastName varchar
+  profile_phone varchar
+  profile_avatar varchar
+  profile_address json
+  isActive boolean [default: true]
+  isEmailVerified boolean [default: false]
+  resetPassword_otp_code varchar
+  resetPassword_otp_expiresAt timestamp
+  resetPassword_otp_attempts int [default: 0]
+  resetPassword_lastRequestedAt timestamp
+  lastLogin timestamp
+  sellerProfile_businessName varchar
+  sellerProfile_businessType varchar // individual, company
+  sellerProfile_businessLicense varchar
+  sellerProfile_taxId varchar
+  sellerProfile_description text
+  sellerProfile_isApproved boolean [default: false]
+  sellerProfile_approvedAt timestamp
+  sellerProfile_approvedBy ObjectId
+  sellerProfile_bankAccount_bankName varchar
+  sellerProfile_bankAccount_accountNumber varchar
+  sellerProfile_bankAccount_accountHolder varchar
+  sellerProfile_bankAccount_branch varchar
+  sellerProfile_bankAccount_isVerified boolean [default: false]
+  sellerProfile_bankAccount_verifiedAt timestamp
+  sellerProfile_bankAccount_verifiedBy ObjectId
+  wallet_balance decimal [default: 0]
+  wallet_currency varchar [default: 'VND']
+  createdAt timestamp
+  updatedAt timestamp
+  
+  Note: 'User table with roles: user, seller, admin. Includes seller profile and wallet.'
+}
+
+Table categories {
+  _id ObjectId [pk]
+  name varchar [unique, not null]
+  slug varchar [unique, not null]
+  description text
+  parent ObjectId
+  level int [default: 0]
+  path varchar [not null]
+  image_url varchar
+  image_alt varchar
+  icon varchar
+  color varchar
+  isActive boolean [default: true]
+  isFeatured boolean [default: false]
+  sortOrder int [default: 0]
+  metaTitle varchar
+  metaDescription varchar
+  keywords json
+  productCount int [default: 0]
+  viewCount int [default: 0]
+  minPrice decimal
+  maxPrice decimal
+  requiredFields json
+  allowSubcategories boolean [default: true]
+  maxSubcategoryLevel int [default: 2]
+  createdAt timestamp
+  updatedAt timestamp
+  
+  Note: 'Hierarchical category structure for products'
+}
+
+Table products {
+  _id ObjectId [pk]
+  title varchar [not null]
+  description text [not null]
+  author varchar [not null]
+  isbn varchar [unique]
+  price decimal [not null]
+  originalPrice decimal
+  category ObjectId [not null]
+  seller ObjectId [not null]
+  images json // [{url, alt, isPrimary}]
+  stock int [not null, default: 0]
+  condition varchar [default: 'new'] // new, like_new, good, fair, poor
+  publisher varchar
+  publishYear int
+  pages int
+  dimensions_length decimal
+  dimensions_width decimal
+  dimensions_height decimal
+  dimensions_unit varchar [default: 'cm'] // cm, in
+  weight_value decimal
+  weight_unit varchar [default: 'g'] // g, kg, lb
+  tags json
+  status varchar [default: 'pending'] // draft, pending, approved, rejected, inactive
+  isActive boolean [default: true]
+  isFeatured boolean [default: false]
+  slug varchar [unique]
+  metaTitle varchar
+  metaDescription varchar
+  views int [default: 0]
+  sales int [default: 0]
+  rating_average decimal [default: 0]
+  rating_count int [default: 0]
+  createdAt timestamp
+  updatedAt timestamp
+  
+  Note: 'Products/Books table with seller relationship and approval status'
+}
+
+Table orders {
+  _id ObjectId [pk]
+  orderNumber varchar [unique, not null]
+  customer ObjectId [not null]
+  items json // [{product, seller, quantity, price, total}]
+  shippingAddress_fullName varchar [not null]
+  shippingAddress_phone varchar [not null]
+  shippingAddress_email varchar [not null]
+  shippingAddress_street varchar [not null]
+  shippingAddress_city varchar [not null]
+  shippingAddress_state varchar [not null]
+  shippingAddress_zipCode varchar [not null]
+  shippingAddress_country varchar [default: 'Vietnam']
+  payment_method varchar [not null] // cod, bank_transfer, credit_card, paypal
+  payment_status varchar [default: 'pending'] // pending, paid, failed, refunded
+  payment_transactionId varchar
+  payment_paidAt timestamp
+  payment_refundedAt timestamp
+  payment_refundAmount decimal
+  status varchar [default: 'pending'] // pending, confirmed, processing, shipped, delivered, cancelled, returned
+  subtotal decimal [not null]
+  shipping_cost decimal [default: 0]
+  shipping_method varchar [default: 'standard'] // standard, express, overnight
+  shipping_trackingNumber varchar
+  shipping_carrier varchar
+  shipping_estimatedDelivery timestamp
+  shipping_shippedAt timestamp
+  shipping_deliveredAt timestamp
+  tax_rate decimal [default: 0]
+  tax_amount decimal [default: 0]
+  discount_code varchar
+  discount_amount decimal [default: 0]
+  discount_percentage decimal [default: 0]
+  total decimal [not null]
+  notes_customer text
+  notes_seller text
+  notes_admin text
+  statusHistory json // [{status, timestamp, note, updatedBy}]
+  cancelledAt timestamp
+  cancelledBy ObjectId
+  cancellationReason text
+  returnRequested boolean [default: false]
+  returnRequestedAt timestamp
+  returnReason text
+  returnStatus varchar [default: 'none'] // none, requested, approved, rejected, returned
+  createdAt timestamp
+  updatedAt timestamp
+  
+  Note: 'Orders table with items array and shipping/payment details'
+}
+
+Table reviews {
+  _id ObjectId [pk]
+  product ObjectId [not null]
+  customer ObjectId [not null]
+  order ObjectId [not null]
+  rating int [not null] // 1-5
+  title varchar
+  comment text [not null]
+  images json // [{url, alt}]
+  helpful_count int [default: 0]
+  helpful_users json // [ObjectId]
+  sellerResponse_comment text
+  sellerResponse_respondedAt timestamp
+  sellerResponse_respondedBy ObjectId
+  status varchar [default: 'pending'] // pending, approved, rejected, hidden
+  isVerified boolean [default: false]
+  isAnonymous boolean [default: false]
+  detailedRatings_quality int // 1-5
+  detailedRatings_value int // 1-5
+  detailedRatings_shipping int // 1-5
+  detailedRatings_communication int // 1-5
+  moderatedAt timestamp
+  moderatedBy ObjectId
+  moderationNote text
+  views int [default: 0]
+  likes int [default: 0]
+  dislikes int [default: 0]
+  createdAt timestamp
+  updatedAt timestamp
+  
+  Note: 'Product reviews with moderation and seller response'
+}
+
+Table payments {
+  _id ObjectId [pk]
+  user ObjectId [not null]
+  amount decimal [not null]
+  type varchar [not null] // deposit, withdrawal, commission, refund
+  status varchar [default: 'pending'] // pending, completed, failed, cancelled
+  method varchar [not null] // bank_transfer, cash, online_payment
+  description text [not null]
+  transactionId varchar [unique]
+  seller ObjectId
+  order ObjectId
+  commission_amount decimal [default: 0]
+  commission_rate decimal [default: 0.02]
+  bankAccount_bankName varchar
+  bankAccount_accountNumber varchar
+  bankAccount_accountHolder varchar
+  approvedBy ObjectId
+  approvedAt timestamp
+  notes text
+  createdAt timestamp
+  updatedAt timestamp
+  
+  Note: 'Payment records for deposits, withdrawals, commissions, and refunds'
+}
+
+Table transactions {
+  _id ObjectId [pk]
+  user ObjectId [not null]
+  type varchar [not null] // deposit, withdrawal, payment, commission, refund
+  amount decimal [not null]
+  balance decimal [not null, default: 0]
+  description text [not null]
+  order ObjectId
+  payment ObjectId
+  seller ObjectId
+  metadata_orderNumber varchar
+  metadata_productName varchar
+  metadata_commissionRate decimal
+  metadata_bankAccount varchar
+  status varchar [default: 'pending'] // pending, completed, failed
+  createdAt timestamp
+  updatedAt timestamp
+  
+  Note: 'Wallet transaction history with balance tracking'
+}
+
+// Relationships - Main relationships only (dbdiagram.io doesn't support multiple refs from same table to same target)
+Ref: products.seller > users._id [delete: restrict]
+Ref: products.category > categories._id [delete: restrict]
+Ref: orders.customer > users._id [delete: restrict]
+Ref: reviews.product > products._id [delete: cascade]
+Ref: reviews.customer > users._id [delete: restrict]
+Ref: reviews.order > orders._id [delete: restrict]
+Ref: payments.user > users._id [delete: restrict]
+Ref: payments.order > orders._id [delete: restrict]
+Ref: transactions.user > users._id [delete: restrict]
+Ref: transactions.order > orders._id [delete: restrict]
+Ref: transactions.payment > payments._id [delete: restrict]
+Ref: categories.parent > categories._id [delete: restrict]
+
+// Note: Additional relationships exist but are not shown to avoid duplicate endpoint errors:
+// - orders.cancelledBy > users._id
+// - reviews.sellerResponse_respondedBy > users._id
+// - reviews.moderatedBy > users._id
+// - payments.approvedBy > users._id
+// - users.sellerProfile_approvedBy > users._id (self-reference)
+// - users.sellerProfile_bankAccount_verifiedBy > users._id (self-reference)
+// - payments.seller > users._id (seller is also a user)
+// - transactions.seller > users._id (seller is also a user)
+

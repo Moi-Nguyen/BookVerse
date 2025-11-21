@@ -1,5 +1,215 @@
 /* Wallet Page Styles for Bookverse */
 
+/* QR Deposit Container */
+.qr-deposit-container {
+    background: var(--bg-primary, #1f2937);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color, #374151);
+    margin-bottom: 2rem;
+}
+
+.qr-deposit-container h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary, #f9fafb);
+    margin-bottom: 1.5rem;
+}
+
+.qr-controls {
+    margin-bottom: 2rem;
+}
+
+.qr-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.qr-actions .btn {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* QR Display */
+.qr-display {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid var(--border-color, #374151);
+}
+
+.qr-code-wrapper {
+    text-align: center;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.qr-code-wrapper h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary, #f9fafb);
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+}
+
+.qr-code-container {
+    background: var(--bg-secondary, #111827);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    display: inline-block;
+    margin-bottom: 2rem;
+    border: 2px solid var(--border-color, #374151);
+    transition: all 0.3s ease;
+}
+
+.qr-code-container:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px);
+    border-color: var(--primary-color, #667eea);
+}
+
+.qr-code-container img {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.qr-info {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(102, 126, 234, 0.05) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.qr-amount {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color, #667eea);
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+    letter-spacing: -0.5px;
+}
+
+.qr-note {
+    color: var(--text-secondary, #d1d5db);
+    font-size: 1rem;
+    margin: 0.75rem 0;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.qr-note-small {
+    color: var(--text-tertiary, #9ca3af);
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.qr-status {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.qr-status.status-success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+    color: #10b981;
+    border: 2px solid rgba(16, 185, 129, 0.5);
+}
+
+.qr-status.status-failed {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.1) 100%);
+    color: #ef4444;
+    border: 2px solid rgba(239, 68, 68, 0.5);
+}
+
+.qr-status.status-timeout {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+    color: #f59e0b;
+    border: 2px solid rgba(245, 158, 11, 0.5);
+}
+
+.qr-status.status-pending {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(102, 126, 234, 0.1) 100%);
+    color: #667eea;
+    border: 2px solid rgba(102, 126, 234, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+}
+
+.status-indicator {
+    font-size: 1.5rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Loading Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.qr-loading {
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary, #111827);
+    border-radius: 16px;
+    border: 2px dashed var(--border-color, #4b5563);
+}
+
+.qr-loading .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color, #4b5563);
+    border-top: 4px solid var(--primary-color, #667eea);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+}
+
+.qr-loading p {
+    color: var(--text-secondary, #d1d5db);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
 /* Wallet Balance */
 .wallet-balance {
     margin-bottom: 2rem;
@@ -59,11 +269,12 @@
 
 /* Deposit Section */
 .deposit-section {
-    background: var(--bg-primary);
+    background: var(--bg-primary, #1f2937);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color, #374151);
     margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .deposit-section h2 {
@@ -78,38 +289,48 @@
     gap: 1.5rem;
 }
 
-.form-group {
+.deposit-section .form-group {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
-.form-group label {
+.deposit-section .form-group label {
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+.deposit-section .form-group input,
+.deposit-section .form-group select,
+.deposit-section .form-group textarea {
+    padding: 0.875rem 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
     font-size: 1rem;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     color: var(--text-primary);
     transition: all 0.3s ease;
+    font-family: inherit;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.deposit-section .form-group input:focus,
+.deposit-section .form-group select:focus,
+.deposit-section .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+    border-color: var(--primary-color, #667eea);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+    transform: translateY(-1px);
+    background: var(--bg-secondary, #111827);
 }
 
-.form-help {
+.deposit-section .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.deposit-section .form-help {
     color: var(--text-secondary);
     font-size: 0.875rem;
     margin-top: 0.25rem;
@@ -147,10 +368,11 @@
 
 /* Payment History */
 .payment-history {
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     border-radius: 12px;
     border: 1px solid var(--border-color);
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
 
 .section-header {

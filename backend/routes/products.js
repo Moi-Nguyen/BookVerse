@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
 const { auth, seller, approvedSeller, optionalAuth } = require('../middlewares/auth');
@@ -38,7 +39,12 @@ router.get('/', validateQuery, optionalAuth, async (req, res) => {
 
         // Search filter
         if (req.query.search) {
-            query.$text = { $search: req.query.search };
+            // Use regex search instead of $text to avoid index requirement
+            query.$or = [
+                { title: { $regex: req.query.search, $options: 'i' } },
+                { author: { $regex: req.query.search, $options: 'i' } },
+                { description: { $regex: req.query.search, $options: 'i' } }
+            ];
         }
 
         // Condition filter
@@ -53,7 +59,12 @@ router.get('/', validateQuery, optionalAuth, async (req, res) => {
 
         // Seller filter
         if (req.query.seller) {
-            query.seller = req.query.seller;
+            // Ensure seller ID is valid ObjectId format
+            if (mongoose.Types.ObjectId.isValid(req.query.seller)) {
+                query.seller = req.query.seller;
+            } else {
+                console.warn('Invalid seller ID format:', req.query.seller);
+            }
         }
 
         // Featured filter
@@ -336,6 +347,20 @@ router.get('/seller/my-products', auth, approvedSeller, validateQuery, async (re
         // Active filter
         if (req.query.isActive !== undefined) {
             query.isActive = req.query.isActive === 'true';
+        }
+        
+        // Category filter
+        if (req.query.category) {
+            query.category = req.query.category;
+        }
+        
+        // Search filter
+        if (req.query.search) {
+            query.$or = [
+                { title: { $regex: req.query.search, $options: 'i' } },
+                { author: { $regex: req.query.search, $options: 'i' } },
+                { description: { $regex: req.query.search, $options: 'i' } }
+            ];
         }
 
         const sortOptions = {};

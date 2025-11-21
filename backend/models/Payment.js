@@ -23,8 +23,19 @@ const paymentSchema = new mongoose.Schema({
     },
     method: {
         type: String,
-        enum: ['bank_transfer', 'cash', 'online_payment'],
+        enum: ['bank_transfer', 'cash', 'online_payment', 'sepay'],
         required: true
+    },
+    // SePay specific fields
+    sepay: {
+        orderId: String, // SePay order ID
+        paymentUrl: String, // SePay payment URL
+        qrCode: String, // QR code for payment
+        bankAccount: {
+            bankName: String,
+            accountNumber: String,
+            accountHolder: String
+        }
     },
     description: {
         type: String,

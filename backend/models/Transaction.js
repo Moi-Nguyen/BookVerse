@@ -17,8 +17,7 @@ const transactionSchema = new mongoose.Schema({
     },
     balance: {
         type: Number,
-        required: true,
-        default: 0
+        required: false
     },
     description: {
         type: String,
@@ -38,12 +37,10 @@ const transactionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    // Transaction metadata
+    // Transaction metadata (Mixed type to allow any fields)
     metadata: {
-        orderNumber: String,
-        productName: String,
-        commissionRate: Number,
-        bankAccount: String
+        type: mongoose.Schema.Types.Mixed,
+        default: {}
     },
     status: {
         type: String,
@@ -62,20 +59,27 @@ transactionSchema.index({ status: 1 });
 
 // Pre-save middleware to calculate balance
 transactionSchema.pre('save', async function(next) {
-    if (this.isNew) {
-        const lastTransaction = await this.constructor
-            .findOne({ user: this.user })
-            .sort({ createdAt: -1 });
-        
-        const previousBalance = lastTransaction ? lastTransaction.balance : 0;
-        
-        if (this.type === 'deposit' || this.type === 'commission') {
-            this.balance = previousBalance + this.amount;
-        } else if (this.type === 'withdrawal' || this.type === 'payment') {
-            this.balance = previousBalance - this.amount;
+    try {
+        // Only calculate balance if it's a new document and balance is not explicitly set
+        if (this.isNew && (this.balance === undefined || this.balance === null)) {
+            const lastTransaction = await this.constructor
+                .findOne({ user: this.user })
+                .sort({ createdAt: -1 });
+            
+            const previousBalance = lastTransaction ? lastTransaction.balance : 0;
+            
+            if (this.type === 'deposit' || this.type === 'commission') {
+                this.balance = previousBalance + this.amount;
+            } else if (this.type === 'withdrawal' || this.type === 'payment') {
+                this.balance = previousBalance - this.amount;
+            } else {
+                this.balance = previousBalance;
+            }
         }
+        next();
+    } catch (error) {
+        next(error);
     }
-    next();
 });
 
 // Static methods

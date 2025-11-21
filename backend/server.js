@@ -1,9 +1,14 @@
+// Load environment variables FIRST, before any other requires
+require('dotenv').config({ encoding: 'utf8' });
+
+const logger = require('./utils/logger');
+logger.bindConsole();
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const morgan = require('morgan');
+const path = require('path');
 const connectDB = require('./config/database');
-require('dotenv').config();
 
 const app = express();
 
@@ -32,15 +37,45 @@ const corsOptions = {
             'http://localhost:8000',
             'http://localhost:3000',
             'http://localhost',
+            'https://bookversevn.store',
+            'https://www.bookversevn.store',
+            'https://api.bookversevn.store',
             'https://bookverse.com',
             'https://staging.bookverse.com'
         ];
         
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
+        // Allow requests with no origin (mobile apps, Postman, etc.)
+        if (!origin) {
+            return callback(null, true);
         }
+        
+        // Allow ngrok and other tunnel services for development
+        // This allows testing production frontend with local backend
+        const isDevelopment = process.env.NODE_ENV === 'development';
+        if (isDevelopment) {
+            // Allow ngrok URLs (https://*.ngrok.io, https://*.ngrok-free.app)
+            if (origin.includes('ngrok.io') || origin.includes('ngrok-free.app') || origin.includes('localhost.run')) {
+                return callback(null, true);
+            }
+            // Allow localhost with any port in development
+            if (origin.startsWith('http://localhost:') || origin.startsWith('https://localhost:')) {
+                return callback(null, true);
+            }
+        }
+        
+        // Allow Render URLs (for production backend)
+        if (origin.includes('onrender.com')) {
+            return callback(null, true);
+        }
+        
+        // Check if origin is in allowed list
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        
+        // Log blocked origin for debugging
+        console.log('CORS blocked origin:', origin);
+        callback(new Error('Not allowed by CORS'));
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
@@ -50,22 +85,31 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Enhanced logging
-app.use(morgan('combined', {
-    skip: function (req, res) { 
-        return res.statusCode < 400; 
-    }
-}));
+// Unified request logging
+app.use((req, res, next) => {
+    const useBigInt = typeof process.hrtime.bigint === 'function';
+    const start = useBigInt ? process.hrtime.bigint() : process.hrtime();
 
-// Debug logging middleware (disabled for now)
-// app.use((req, res, next) => {
-//     console.log(`📥 ${req.method} ${req.url}`);
-//     console.log('Headers:', req.headers);
-//     if (req.body && Object.keys(req.body).length > 0) {
-//         console.log('Body:', req.body);
-//     }
-//     next();
-// });
+    res.on('finish', () => {
+        let durationMs;
+        if (useBigInt) {
+            const diff = process.hrtime.bigint() - start;
+            durationMs = Number(diff) / 1e6;
+        } else {
+            const diff = process.hrtime(start);
+            durationMs = (diff[0] * 1e3) + (diff[1] / 1e6);
+        }
+
+        logger.http(`${req.method} ${req.originalUrl}`, {
+            status: res.statusCode,
+            duration: `${durationMs.toFixed(1)}ms`,
+            ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress,
+            user: req.user ? req.user._id : 'guest'
+        });
+    });
+
+    next();
+});
 
 // Body parsing with size limits and error handling
 app.use(express.json({ 
@@ -96,6 +140,9 @@ app.use(express.urlencoded({
     extended: true, 
     limit: '10mb' 
 }));
+
+// Static uploads (attachments)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Response interceptor to ensure proper Content-Type and valid JSON (disabled for now)
 // app.use((req, res, next) => {
@@ -157,6 +204,8 @@ app.use('/api/admin', require('./routes/admin'));
 app.use('/api/seller', require('./routes/seller'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/payments', require('./routes/payments'));
+app.use('/api/messages', require('./routes/messages'));
+app.use('/api/forum', require('./routes/forum'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -180,9 +229,9 @@ app.use('*', notFoundHandler);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`📚 Bookverse Marketplace API v1.0.0`);
-    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+    logger.success(`Server running on port ${PORT}`);
+    logger.info('Bookverse Marketplace API v1.0.0');
+    logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
 
 module.exports = app;

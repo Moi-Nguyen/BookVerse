@@ -1,0 +1,233 @@
+@startuml Bookverse_Activity_Diagrams
+
+!define RECTANGLE activity
+
+' Activity Diagram 1: User Registration and Login
+@startuml Registration_Login_Flow
+
+start
+
+:User accesses registration page;
+:Fill registration form;
+:Submit form;
+
+if (Form valid?) then (yes)
+  :Check if email exists;
+  if (Email exists?) then (yes)
+    :Show error: Email already exists;
+    stop
+  else (no)
+    :Hash password;
+    :Create user account;
+    :Send verification email;
+    :Show success message;
+    :Redirect to login page;
+  endif
+else (no)
+  :Show validation errors;
+  stop
+endif
+
+:User accesses login page;
+:Enter email and password;
+:Submit login form;
+
+if (Credentials valid?) then (yes)
+  :Generate JWT token;
+  :Update last login;
+  :Set session;
+  :Redirect to dashboard;
+  stop
+else (no)
+  :Show error: Invalid credentials;
+  stop
+endif
+
+@enduml
+
+' Activity Diagram 2: Purchase Flow
+@startuml Purchase_Flow
+
+start
+
+:Customer browses products;
+:Add product to cart;
+:View cart;
+:Proceed to checkout;
+
+if (User logged in?) then (no)
+  :Redirect to login;
+  stop
+else (yes)
+  :Enter shipping address;
+  :Select payment method;
+  :Review order;
+  :Confirm order;
+  
+  if (Payment method is SePay?) then (yes)
+    :Create SePay payment;
+    :Generate QR code;
+    :Display QR code;
+    :Wait for payment;
+    
+    if (Payment confirmed?) then (yes)
+      :Update order status to paid;
+      :Notify seller;
+      :Reduce product stock;
+      :Create transaction record;
+      :Show success page;
+      stop
+    else (no)
+      :Show payment failed;
+      stop
+    endif
+  else (no - Bank transfer)
+    :Create order with pending payment;
+    :Show order confirmation;
+    :Wait for admin approval;
+    
+    if (Payment approved?) then (yes)
+      :Update order status;
+      :Notify seller;
+      :Reduce product stock;
+      stop
+    else (no)
+      :Cancel order;
+      stop
+    endif
+  endif
+endif
+
+@enduml
+
+' Activity Diagram 3: Seller Product Management
+@startuml Seller_Product_Management
+
+start
+
+if (User is approved seller?) then (no)
+  :Show message: Not approved;
+  stop
+else (yes)
+  :Access seller dashboard;
+  :Navigate to products;
+  
+  partition "Add Product" {
+    :Click Add Product;
+    :Fill product form;
+    :Upload images;
+    :Set price and stock;
+    :Submit product;
+    :Product status: Pending;
+    :Wait for admin approval;
+    
+    if (Admin approves?) then (yes)
+      :Product status: Approved;
+      :Product visible to customers;
+    else (no)
+      :Product status: Rejected;
+      :Show rejection reason;
+    endif
+  }
+  
+  partition "Edit Product" {
+    :Select product;
+    :Edit product details;
+    :Save changes;
+    if (Major changes?) then (yes)
+      :Status: Pending approval;
+    else (no)
+      :Status: Approved (unchanged);
+    endif
+  }
+  
+  partition "Delete Product" {
+    :Select product;
+    :Confirm deletion;
+    :Remove product;
+  }
+endif
+
+stop
+
+@enduml
+
+' Activity Diagram 4: Order Fulfillment
+@startuml Order_Fulfillment
+
+start
+
+:Seller receives order notification;
+:View order details;
+:Check product availability;
+
+if (Product available?) then (no)
+  :Cancel order;
+  :Refund customer;
+  stop
+else (yes)
+  :Prepare order;
+  :Update order status: Processing;
+  :Package product;
+  :Update order status: Shipped;
+  :Add tracking number;
+  :Notify customer;
+  
+  :Customer receives package;
+  :Update order status: Delivered;
+  
+  if (Customer satisfied?) then (yes)
+    :Customer can leave review;
+    :Calculate seller commission;
+    :Transfer payment to seller;
+    :Update seller wallet;
+    stop
+  else (no)
+    :Customer requests return;
+    :Process return;
+    :Refund customer;
+    stop
+  endif
+endif
+
+@enduml
+
+' Activity Diagram 5: Withdrawal Process
+@startuml Withdrawal_Process
+
+start
+
+:Seller accesses withdrawal page;
+:Check wallet balance;
+
+if (Balance sufficient?) then (no)
+  :Show error: Insufficient balance;
+  stop
+else (yes)
+  :Enter withdrawal amount;
+  :Select bank account;
+  :Submit withdrawal request;
+  :Create payment record (pending);
+  :Notify admin;
+  
+  :Admin reviews request;
+  
+  if (Admin approves?) then (yes)
+    :Update payment status: Completed;
+    :Deduct from seller wallet;
+    :Transfer to bank account;
+    :Create transaction record;
+    :Notify seller;
+    stop
+  else (no)
+    :Update payment status: Rejected;
+    :Add rejection notes;
+    :Notify seller;
+    stop
+  endif
+endif
+
+@enduml
+
+@enduml
+

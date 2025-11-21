@@ -1,0 +1,13 @@
+# Disable rewrite rules for admin pages
+RewriteEngine Off
+
+# Ensure PHP files are handled directly
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Optional: Prevent directory listing
+Options -Indexes
+
+# Allow direct access to all PHP files
+DirectoryIndex disabled

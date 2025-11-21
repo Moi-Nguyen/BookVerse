@@ -1,0 +1,91 @@
+/* Admin Login Page */
+.admin-login {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(30, 64, 175, 0.3);
+}
+
+.admin-login .auth-page-description {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.admin-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.admin-icon {
+    font-size: 1.2rem;
+}
+
+.admin-login h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.admin-login .auth-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.admin-login .auth-form label {
+    color: white;
+}
+
+.admin-login .auth-form input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.admin-login .auth-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.admin-login .auth-form input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-login .btn-primary {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.admin-login .btn-primary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.admin-links {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.admin-links .muted {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.admin-links a {
+    color: white;
+    text-decoration: underline;
+}
+
+.admin-links a:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+

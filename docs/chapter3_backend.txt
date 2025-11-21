@@ -1,0 +1,38 @@
+Chuong 3: Thiet ke co so du lieu - backend
+
+1. Xay dung co so du lieu (0,75 diem)
+- Yeu cau: Co so du lieu duoc thiet ke ro rang, bieu dien bang so do ERD, thaht lap cac moi quan he, rang buoc, index va khoa.
+- Ung dung o Bookverse: ERD gom cac bang users, categories, products, orders, reviews, payments, transactions. Moi quan he chinh duoc xac dinh ro rang de dap ung mo hinh thuong mai dien tu nhieu nguoi ban. Moi truong MongoDB can mo ta ro cac truong, index quan trong (email, username, orderNumber, status...).
+- Goi y bao cao: Minh hoa bang hinh anh so do ERD, giai thich ly do chia bang, cach dat khoa chinh/khoa ngoai, cach toi uu query (index, text search), ke hoach migration/seed du lieu ban dau.
+
+2. Tinh dung (Correctness / Chuc nang) (0,5 diem)
+- Yeu cau: Backend phai dap ung dung yeu cau nghiep vu, validation, xu ly loi ro rang.
+- Ung dung o Bookverse: Validation duoc thuc hien thong qua Mongoose schema (required, enum, min/max). Xu ly loi thong qua middlewares (validation.js, response.js). Can bao dam cac API tra ve ma loi chuan, thong diep ro rang, ho tro logging.
+- Goi y bao cao: Liet ke cac API chinh, mo ta luong xu ly thong thuong va truong hop loi. Giai thich cach he thong dam bao tinh nhat quan (vi du: cap nhat so du wallet, tinh toan tong don hang). Cung cap vi du ve thong diep loi va cach kiem thu.
+
+3. Quan ly trang thai nguoi dung (client-side) (0,75 diem)
+- Yeu cau: Quan ly Session, Cookie, Cache tren phia nguoi dung.
+- Ung dung o Bookverse: Backend cung cap JWT cho xac thuc, luu tru token trong cookie HTTPOnly, ho tro refresh token (neu co). Cache du lieu thong qua Redis hoac tang nho trung gian (co the mo ta dinh huong). Session management can giai thich ro, bao gom timeout, doi mat khau, log out.
+- Goi y bao cao: Trinh bay cach he thong phan phoi token, bao ve cookie, lam moi trang thai khi dang xuat. Neu khong dung Session server-side, can giai thich ly do va co che thay the. Neu su dung cache cho du lieu (vd: danh muc), mo ta cach dong bo voi database.
+
+4. Bao mat (Security) (0,5 diem)
+- Yeu cau: Xac thuc, phan quyen, phong chong tan cong, ma hoa du lieu nhay cam.
+- Ung dung o Bookverse: Su dung bcrypt ma hoa mat khau, role-based access control cho admin/seller/user, middleware bao mat (security.js, secure-auth.js). Ho tro CSP, rate limiting, sanitize du lieu vao de chong XSS/Injection.
+- Goi y bao cao: Liet ke cac lop bao mat, quy trinh duyet nguoi ban, quy tac dat mat khau. Trinh bay cach he thong tao OTP, xac minh email, quan ly seller wallet. Neu co ma hoa du lieu bo sung (VD: thong tin ngan hang), giai thich giai phap.
+
+Huong dan trinh bay tieu luan
+- Su dung cau truc ro rang theo tung tieu chi, co bang va so do minh hoa.
+- Dinh kem phu luc: ERD, mo ta schema (JSON hoac bang), API chinh.
+- Phan tich diem manh/han che va de xuat cai tien.
+- Ket luan rut ra bai hoc ve thiet ke backend an toan, mo rong, toi uu.
+
+
+
+
+
+
+
+
+
+
+

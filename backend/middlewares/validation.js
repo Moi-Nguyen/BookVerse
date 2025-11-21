@@ -69,8 +69,8 @@ const validateProduct = [
         .withMessage('Title must be between 1 and 200 characters')
         .trim(),
     body('description')
-        .isLength({ min: 10, max: 2000 })
-        .withMessage('Description must be between 10 and 2000 characters')
+        .isLength({ min: 1, max: 2000 })
+        .withMessage('Description must be between 1 and 2000 characters')
         .trim(),
     body('author')
         .isLength({ min: 1, max: 100 })
@@ -97,10 +97,7 @@ const validateProduct = [
         .optional()
         .isIn(['new', 'like_new', 'good', 'fair', 'poor'])
         .withMessage('Invalid condition value'),
-    body('language')
-        .optional()
-        .isLength({ max: 50 })
-        .withMessage('Language cannot exceed 50 characters'),
+    // Language field removed to avoid MongoDB text index issues
     body('publisher')
         .optional()
         .isLength({ max: 100 })
@@ -114,9 +111,16 @@ const validateProduct = [
         .isInt({ min: 1 })
         .withMessage('Pages must be a positive integer'),
     body('isbn')
-        .optional()
-        .matches(/^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9X]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/)
-        .withMessage('Please provide a valid ISBN'),
+        .optional({ checkFalsy: true })
+        .trim()
+        .custom((value) => {
+            // Allow empty string
+            if (!value) return true;
+            
+            // Allow any string (ISBN validation is too strict)
+            // In real world, seller might not know exact ISBN format
+            return true;
+        }),
     handleValidationErrors
 ];
 

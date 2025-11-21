@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
     orderNumber: {
         type: String,
-        required: true
+        required: false // Will be auto-generated in pre-save hook
     },
     customer: {
         type: mongoose.Schema.Types.ObjectId,
@@ -90,7 +90,7 @@ const orderSchema = new mongoose.Schema({
     payment: {
         method: {
             type: String,
-            enum: ['cod', 'bank_transfer', 'credit_card', 'paypal'],
+            enum: ['cod', 'bank_transfer', 'credit_card', 'paypal', 'wallet'],
             required: [true, 'Payment method is required']
         },
         status: {

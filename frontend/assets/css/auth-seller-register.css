@@ -1,0 +1,115 @@
+/* Seller Register Page */
+.seller-register {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(5, 150, 105, 0.3);
+}
+
+.seller-register .auth-page-description {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.seller-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.seller-icon {
+    font-size: 1.2rem;
+}
+
+.seller-register h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.seller-register .auth-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.seller-register .form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.seller-register .form-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.seller-register .form-section h3 {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.seller-register .form-section h3::before {
+    content: "📋";
+    font-size: 1rem;
+}
+
+.seller-register .auth-form label {
+    color: white;
+}
+
+.seller-register .auth-form input,
+.seller-register .auth-form textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.seller-register .auth-form input::placeholder,
+.seller-register .auth-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.seller-register .auth-form input:focus,
+.seller-register .auth-form textarea:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.seller-register .btn-primary {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.seller-register .btn-primary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.seller-register .muted {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.seller-register a {
+    color: white;
+    text-decoration: underline;
+}
+
+.seller-register a:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+

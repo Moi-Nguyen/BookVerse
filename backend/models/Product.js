@@ -65,11 +65,7 @@ const productSchema = new mongoose.Schema({
         enum: ['new', 'like_new', 'good', 'fair', 'poor'],
         default: 'new'
     },
-    language: {
-        type: String,
-        default: 'Vietnamese',
-        maxlength: [50, 'Language cannot exceed 50 characters']
-    },
+    // Language field removed to avoid MongoDB text index issues with unsupported languages
     publisher: {
         type: String,
         trim: true,
@@ -153,7 +149,11 @@ const productSchema = new mongoose.Schema({
 });
 
 // Indexes for better performance
-productSchema.index({ title: 'text', description: 'text', author: 'text' });
+// Text index with default language (none) to support any language including Vietnamese
+productSchema.index(
+    { title: 'text', description: 'text', author: 'text' },
+    { default_language: 'none' }  // Don't use language field for text search
+);
 productSchema.index({ category: 1 });
 productSchema.index({ seller: 1 });
 productSchema.index({ status: 1 });

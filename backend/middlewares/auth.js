@@ -31,8 +31,15 @@ const auth = async (req, res, next) => {
             });
         }
         
-        // Ensure user data is properly serialized
-        req.user = user.toJSON ? user.toJSON() : user.toObject ? user.toObject() : user;
+        // Ensure user data is properly serialized and has both id and _id
+        const userObj = user.toJSON ? user.toJSON() : user.toObject ? user.toObject() : user;
+        // Ensure both id and _id are available for compatibility
+        if (userObj._id && !userObj.id) {
+            userObj.id = userObj._id.toString();
+        } else if (userObj.id && !userObj._id) {
+            userObj._id = userObj.id;
+        }
+        req.user = userObj;
         next();
     } catch (error) {
         if (error.name === 'JsonWebTokenError') {
@@ -81,10 +88,13 @@ const seller = (req, res, next) => {
 // Check if user is approved seller
 const approvedSeller = async (req, res, next) => {
     try {
+        // Admin always has access
         if (req.user.role === 'admin') {
             return next();
         }
         
+        // Regular users don't need seller approval (they're not sellers)
+        // This middleware should only be used on seller-specific routes
         if (req.user.role !== 'seller') {
             return res.status(403).json({
                 success: false,
@@ -92,10 +102,13 @@ const approvedSeller = async (req, res, next) => {
             });
         }
         
+        // Check if seller is approved
+        // Only sellers need approval, regular users are always "approved" for their actions
         if (!req.user.sellerProfile?.isApproved) {
             return res.status(403).json({
                 success: false,
-                message: 'Access denied. Seller account not approved.'
+                message: 'Access denied. Your seller account is pending admin approval. Please wait for approval to start selling.',
+                pendingApproval: true
             });
         }
         

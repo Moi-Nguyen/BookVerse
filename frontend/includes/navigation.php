@@ -52,6 +52,7 @@ $navigationConfig = [
             'user_menu' => [
                 ['url' => 'pages/account/profile.php', 'label' => 'Hồ sơ', 'icon' => '👤'],
                 ['url' => 'pages/account/orders.php', 'label' => 'Đơn hàng', 'icon' => '📦'],
+                ['url' => 'pages/account/messages.php', 'label' => 'Tin nhắn', 'icon' => '💬'],
                 ['url' => 'pages/account/wishlist.php', 'label' => 'Yêu thích', 'icon' => '❤️'],
                 ['url' => 'pages/account/wallet.php', 'label' => 'Ví điện tử', 'icon' => '💰'],
                 ['url' => '#', 'label' => 'Đăng xuất', 'icon' => '🚪', 'action' => 'logout']
@@ -64,11 +65,13 @@ $navigationConfig = [
             ['url' => 'dashboard.php', 'label' => 'Dashboard', 'icon' => '📊'],
             ['url' => 'products.php', 'label' => 'Sản phẩm', 'icon' => '📚'],
             ['url' => 'orders.php', 'label' => 'Đơn hàng', 'icon' => '📦'],
+            ['url' => 'messages.php', 'label' => 'Tin nhắn', 'icon' => '💬'],
             ['url' => 'bank-account.php', 'label' => 'Tài khoản', 'icon' => '🏦']
         ],
         'actions' => [
             'user_menu' => [
                 ['url' => 'dashboard.php', 'label' => 'Dashboard', 'icon' => '📊'],
+                ['url' => 'messages.php', 'label' => 'Tin nhắn', 'icon' => '💬'],
                 ['url' => '../index.php', 'label' => 'Về trang chủ', 'icon' => '🏠'],
                 ['url' => '#', 'label' => 'Đăng xuất', 'icon' => '🚪', 'action' => 'logout']
             ]
@@ -81,6 +84,7 @@ $navigationConfig = [
             ['url' => 'users.php', 'label' => 'Người dùng', 'icon' => '👥'],
             ['url' => 'products.php', 'label' => 'Sản phẩm', 'icon' => '📚'],
             ['url' => 'orders.php', 'label' => 'Đơn hàng', 'icon' => '📦'],
+            ['url' => 'messages.php', 'label' => 'Tin nhắn', 'icon' => '💬'],
             ['url' => 'payments.php', 'label' => 'Thanh toán', 'icon' => '💰']
         ],
         'actions' => [
@@ -148,8 +152,8 @@ function getRelativePath($url, $currentPath) {
             <!-- Logo -->
             <div class="logo">
                 <a href="<?php echo $navConfig['logo']; ?>" aria-label="Bookverse - Trang chủ">
-                    <img src="<?php echo strpos($currentPath, '/pages/') !== false ? '../' : ''; ?>assets/images/logo-text.svg" 
-                         alt="Bookverse Logo" class="logo-img" width="150" height="33">
+                <img src="<?php echo strpos($currentPath, '/pages/') !== false ? '../' : ''; ?>assets/images/logo-text-new.svg" 
+                alt="Bookverse Logo" class="logo-img" width="150" height="40">
                 </a>
             </div>
 
@@ -205,37 +209,4 @@ function getRelativePath($url, $currentPath) {
     </div>
 </header>
 
-<script>
-// User menu toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const userBtn = document.getElementById('userBtn');
-    const userDropdown = document.getElementById('userDropdown');
-    
-    if (userBtn && userDropdown) {
-        userBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const isExpanded = userBtn.getAttribute('aria-expanded') === 'true';
-            userBtn.setAttribute('aria-expanded', !isExpanded);
-            userDropdown.setAttribute('aria-hidden', isExpanded);
-            userDropdown.classList.toggle('show');
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function() {
-            userBtn.setAttribute('aria-expanded', 'false');
-            userDropdown.setAttribute('aria-hidden', 'true');
-            userDropdown.classList.remove('show');
-        });
-    }
-});
 
-// Logout function
-function logout() {
-    if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
-        // Clear token and redirect
-        localStorage.removeItem('token');
-        sessionStorage.clear();
-        window.location.href = '<?php echo $navConfig['logo']; ?>';
-    }
-}
-</script>

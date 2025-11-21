@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const redis = require('redis');
+const logger = require('../utils/logger');
 
 // Redis client for caching
 const redisClient = redis.createClient({
@@ -39,32 +40,32 @@ const connectDB = async () => {
             retryReads: true
         });
         
-        console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+        logger.success('MongoDB connected', { host: conn.connection.host });
         
         // Connect to Redis
         await redisClient.connect();
-        console.log('✅ Redis Connected');
+        logger.success('Redis connected', { host: redisClient.options?.socket?.host || 'localhost' });
         
         // Setup Redis error handling
         redisClient.on('error', (err) => {
-            console.error('Redis Client Error:', err);
+            logger.error('Redis client error', err);
         });
         
         // Setup connection monitoring
         mongoose.connection.on('connected', () => {
-            console.log('📊 MongoDB connection established');
+            logger.info('MongoDB connection established');
         });
         
         mongoose.connection.on('error', (err) => {
-            console.error('❌ MongoDB connection error:', err);
+            logger.error('MongoDB connection error', err);
         });
         
         mongoose.connection.on('disconnected', () => {
-            console.log('⚠️ MongoDB disconnected');
+            logger.warn('MongoDB disconnected');
         });
         
     } catch (error) {
-        console.error('❌ Database connection error:', error);
+        logger.error('Database connection error', error);
         process.exit(1);
     }
 };
@@ -76,7 +77,7 @@ const cache = {
             const value = await redisClient.get(key);
             return value ? JSON.parse(value) : null;
         } catch (error) {
-            console.error('Cache get error:', error);
+            logger.error('Cache get error', error);
             return null;
         }
     },
@@ -85,7 +86,7 @@ const cache = {
         try {
             await redisClient.setEx(key, expireInSeconds, JSON.stringify(value));
         } catch (error) {
-            console.error('Cache set error:', error);
+            logger.error('Cache set error', error);
         }
     },
     
@@ -93,7 +94,7 @@ const cache = {
         try {
             await redisClient.del(key);
         } catch (error) {
-            console.error('Cache delete error:', error);
+            logger.error('Cache delete error', error);
         }
     },
     
@@ -104,7 +105,7 @@ const cache = {
                 await redisClient.del(keys);
             }
         } catch (error) {
-            console.error('Cache clear pattern error:', error);
+            logger.error('Cache clear pattern error', error);
         }
     }
 };
@@ -179,9 +180,9 @@ const createOptimizedIndexes = async () => {
         await db.collection('categories').createIndex({ isFeatured: 1 });
         await db.collection('categories').createIndex({ sortOrder: 1 });
         
-        console.log('✅ Database indexes created successfully');
+        logger.success('Database indexes created successfully');
     } catch (error) {
-        console.error('❌ Error creating indexes:', error);
+        logger.error('Error creating indexes', error);
     }
 };
 

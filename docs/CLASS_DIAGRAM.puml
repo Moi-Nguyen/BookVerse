@@ -1,0 +1,325 @@
+@startuml Bookverse_Class_Diagram
+
+!define RECTANGLE class
+
+skinparam classAttributeIconSize 0
+
+class User {
+  -_id: ObjectId
+  -username: String
+  -email: String
+  -password: String
+  -oauthProvider: String
+  -oauthId: String
+  -role: Enum[user, seller, admin]
+  -profile: Profile
+  -isActive: Boolean
+  -isEmailVerified: Boolean
+  -sellerProfile: SellerProfile
+  -wallet: Wallet
+  -createdAt: Date
+  -updatedAt: Date
+  +hashPassword()
+  +comparePassword()
+  +generateOTP()
+  +verifyOTP()
+}
+
+class Profile {
+  -firstName: String
+  -lastName: String
+  -phone: String
+  -avatar: String
+  -address: Object
+}
+
+class SellerProfile {
+  -businessName: String
+  -businessType: Enum[individual, company]
+  -businessLicense: String
+  -taxId: String
+  -description: String
+  -isApproved: Boolean
+  -approvedAt: Date
+  -approvedBy: ObjectId
+}
+
+class Wallet {
+  -balance: Number
+  -pendingBalance: Number
+  -totalEarned: Number
+  -totalWithdrawn: Number
+}
+
+class Product {
+  -_id: ObjectId
+  -title: String
+  -description: String
+  -author: String
+  -isbn: String
+  -price: Number
+  -originalPrice: Number
+  -category: ObjectId
+  -seller: ObjectId
+  -images: Array[Image]
+  -stock: Number
+  -condition: Enum[new, like_new, good, fair, poor]
+  -publisher: String
+  -publishYear: Number
+  -pages: Number
+  -status: Enum[pending, approved, rejected, sold_out]
+  -isActive: Boolean
+  -views: Number
+  -salesCount: Number
+  -rating: Number
+  -reviewsCount: Number
+  -createdAt: Date
+  -updatedAt: Date
+  +calculateRating()
+  +updateStock()
+}
+
+class Category {
+  -_id: ObjectId
+  -name: String
+  -slug: String
+  -description: String
+  -parent: ObjectId
+  -level: Number
+  -path: String
+  -image: Object
+  -icon: String
+  -color: String
+  -isActive: Boolean
+  -isFeatured: Boolean
+  -sortOrder: Number
+  -productCount: Number
+  -viewCount: Number
+  +updateProductCount()
+  +getSubcategories()
+  +getParentCategories()
+}
+
+class Order {
+  -_id: ObjectId
+  -orderNumber: String
+  -customer: ObjectId
+  -items: Array[OrderItem]
+  -shippingAddress: Address
+  -paymentMethod: String
+  -subtotal: Number
+  -shippingFee: Number
+  -total: Number
+  -status: Enum[pending, confirmed, processing, shipped, delivered, cancelled, refunded]
+  -paymentStatus: Enum[pending, paid, failed, refunded]
+  -trackingNumber: String
+  -notes: String
+  -createdAt: Date
+  -updatedAt: Date
+  +calculateTotal()
+  +updateStatus()
+  +addTracking()
+}
+
+class OrderItem {
+  -product: ObjectId
+  -seller: ObjectId
+  -quantity: Number
+  -price: Number
+  -total: Number
+}
+
+class Address {
+  -fullName: String
+  -phone: String
+  -email: String
+  -street: String
+  -city: String
+  -state: String
+  -zipCode: String
+  -country: String
+}
+
+class Payment {
+  -_id: ObjectId
+  -user: ObjectId
+  -amount: Number
+  -type: Enum[deposit, withdrawal, commission, refund]
+  -status: Enum[pending, completed, failed, cancelled]
+  -method: Enum[bank_transfer, cash, online_payment, sepay]
+  -sepay: SepayInfo
+  -description: String
+  -transactionId: String
+  -seller: ObjectId
+  -order: ObjectId
+  -commission: Commission
+  -bankAccount: BankAccount
+  -approvedBy: ObjectId
+  -approvedAt: Date
+  -createdAt: Date
+  -updatedAt: Date
+}
+
+class SepayInfo {
+  -orderId: String
+  -paymentUrl: String
+  -qrCode: String
+  -bankAccount: Object
+}
+
+class Commission {
+  -amount: Number
+  -rate: Number
+}
+
+class BankAccount {
+  -bankName: String
+  -accountNumber: String
+  -accountHolder: String
+}
+
+class Review {
+  -_id: ObjectId
+  -product: ObjectId
+  -customer: ObjectId
+  -order: ObjectId
+  -rating: Number
+  -title: String
+  -comment: String
+  -images: Array[Image]
+  -helpful: HelpfulInfo
+  -isVerified: Boolean
+  -status: Enum[pending, approved, rejected]
+  -createdAt: Date
+  -updatedAt: Date
+}
+
+class HelpfulInfo {
+  -count: Number
+  -users: Array[ObjectId]
+}
+
+class Post {
+  -_id: ObjectId
+  -author: ObjectId
+  -title: String
+  -content: String
+  -category: Enum[review, discussion, sell-tips, request, news]
+  -tags: Array[String]
+  -likes: Array[ObjectId]
+  -likesCount: Number
+  -commentsCount: Number
+  -status: Enum[pending, approved, rejected, deleted]
+  -isDeleted: Boolean
+  -createdAt: Date
+  -updatedAt: Date
+}
+
+class Comment {
+  -_id: ObjectId
+  -post: ObjectId
+  -author: ObjectId
+  -content: String
+  -parent: ObjectId
+  -likes: Array[ObjectId]
+  -isDeleted: Boolean
+  -createdAt: Date
+  -updatedAt: Date
+}
+
+class Message {
+  -_id: ObjectId
+  -conversation: ObjectId
+  -sender: ObjectId
+  -content: String
+  -isRead: Boolean
+  -readAt: Date
+  -createdAt: Date
+}
+
+class Conversation {
+  -_id: ObjectId
+  -participants: Array[ObjectId]
+  -lastMessage: ObjectId
+  -lastMessageAt: Date
+  -unreadCount: Object
+  -createdAt: Date
+  -updatedAt: Date
+}
+
+class Wishlist {
+  -_id: ObjectId
+  -user: ObjectId
+  -items: Array[WishlistItem]
+  -createdAt: Date
+  -updatedAt: Date
+}
+
+class WishlistItem {
+  -product: ObjectId
+  -addedAt: Date
+}
+
+class Transaction {
+  -_id: ObjectId
+  -user: ObjectId
+  -type: Enum[deposit, withdrawal, purchase, sale, commission, refund]
+  -amount: Number
+  -balance: Number
+  -description: String
+  -reference: ObjectId
+  -createdAt: Date
+}
+
+class Settings {
+  -_id: ObjectId
+  -key: String
+  -value: Mixed
+  -type: String
+  -description: String
+  -updatedAt: Date
+}
+
+' Relationships
+User "1" *-- "1" Profile
+User "1" *-- "0..1" SellerProfile
+User "1" *-- "1" Wallet
+User "1" --o "*" Product : sells
+User "1" --o "*" Order : places
+User "1" --o "*" Payment : makes
+User "1" --o "*" Review : writes
+User "1" --o "*" Post : creates
+User "1" --o "*" Comment : writes
+User "1" --o "*" Message : sends
+User "1" --o "*" Conversation : participates
+User "1" --o "1" Wishlist : has
+User "1" --o "*" Transaction : has
+
+Product "1" --o "*" OrderItem : contains
+Product "1" *-- "1" Category : belongs to
+Product "1" *-- "1" User : sold by
+Product "1" --o "*" Review : has
+
+Category "1" --o "*" Category : parent-child
+
+Order "1" *-- "*" OrderItem : contains
+Order "1" *-- "1" Address : ships to
+Order "1" *-- "1" User : ordered by
+Order "1" --o "*" Payment : paid by
+Order "1" --o "*" Review : reviewed in
+
+Payment "1" *-- "0..1" SepayInfo : uses
+Payment "1" *-- "0..1" Commission : includes
+Payment "1" *-- "0..1" BankAccount : uses
+Payment "1" --o "0..1" Order : for
+
+Post "1" --o "*" Comment : has
+Comment "1" --o "*" Comment : replies to
+
+Conversation "1" --o "*" Message : contains
+
+Wishlist "1" *-- "*" WishlistItem : contains
+WishlistItem "1" --> "1" Product : references
+
+@enduml
+

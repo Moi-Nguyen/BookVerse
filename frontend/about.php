@@ -91,43 +91,44 @@ include 'includes/header.php';
             <div class="team-grid">
                 <div class="team-member">
                     <div class="member-avatar">
-                        <div class="avatar-placeholder">👨‍💼</div>
+                        <img class="avatar-placeholder" src="https://sf-static.upanhlaylink.com/img/image_202511089b5b2e799534e4f134f145b24f3a5c9c.jpg" alt="Nguyễn Trường Phục">
+
                     </div>
                     <h3>Nguyễn Trường Phục</h3>
                     <p class="member-role">CEO & Founder</p>
-                    <p class="member-bio">Với tầm nhìn chiến lược và kinh nghiệm lãnh đạo, anh Phục đã dẫn dắt Bookverse từ những ngày đầu thành lập, tạo nên một nền tảng kết nối cộng đồng yêu sách.</p>
+                    <p class="member-bio">Với tầm nhìn chiến lược và kinh nghiệm lãnh đạo, Trường Phục đã dẫn dắt Bookverse từ những ngày đầu thành lập, tạo nên một nền tảng kết nối cộng đồng yêu sách.</p>
                 </div>
                 <div class="team-member">
                     <div class="member-avatar">
-                        <div class="avatar-placeholder">👨‍💻</div>
+                    <img class="avatar-placeholder" src="https://sf-static.upanhlaylink.com/img/image_20251108375114e21252134cc88d460fae885669.jpg" alt="Nguyễn Đức Lượng">
                     </div>
                     <h3>Nguyễn Đức Lượng</h3>
                     <p class="member-role">CTO</p>
-                    <p class="member-bio">Chuyên gia công nghệ với kinh nghiệm sâu về phát triển hệ thống, anh Lượng đảm bảo Bookverse hoạt động ổn định và bảo mật cao.</p>
+                    <p class="member-bio">Chuyên gia công nghệ với kinh nghiệm sâu về phát triển hệ thống, Đức Lượng đảm bảo Bookverse hoạt động ổn định và bảo mật cao.</p>
                 </div>
                 <div class="team-member">
                     <div class="member-avatar">
-                        <div class="avatar-placeholder">👨‍🎨</div>
+                    <img class="avatar-placeholder" src="https://sf-static.upanhlaylink.com/img/image_202511084dc4b589b7aa2cece2daf1d9368d487c.jpg" alt="Lê Đức Anh ">
                     </div>
                     <h3>Lê Đức Anh</h3>
                     <p class="member-role">Head of Design</p>
-                    <p class="member-bio">Với con mắt thẩm mỹ tinh tế, anh Anh tạo ra những trải nghiệm người dùng tuyệt vời, làm cho việc mua bán sách trở nên thú vị và dễ dàng.</p>
+                    <p class="member-bio">Với con mắt thẩm mỹ tinh tế, Đức Anh tạo ra những trải nghiệm người dùng tuyệt vời, làm cho việc mua bán sách trở nên thú vị và dễ dàng.</p>
                 </div>
                 <div class="team-member">
                     <div class="member-avatar">
-                        <div class="avatar-placeholder">👨‍💼</div>
+                    <img class="avatar-placeholder" src="https://sf-static.upanhlaylink.com/img/image_202511082f3364753177a94e5833f8abf85a30d8.jpg" alt="Nguyễn Minh Huy">
                     </div>
                     <h3>Nguyễn Minh Huy</h3>
                     <p class="member-role">Head of Marketing</p>
-                    <p class="member-bio">Chuyên gia marketing với khả năng xây dựng cộng đồng mạnh mẽ, anh Huy giúp Bookverse kết nối với hàng nghìn người yêu sách trên khắp Việt Nam.</p>
+                    <p class="member-bio">Chuyên gia marketing với khả năng xây dựng cộng đồng mạnh mẽ, Minh Huy giúp Bookverse kết nối với hàng nghìn người yêu sách trên khắp Việt Nam.</p>
                 </div>
                 <div class="team-member">
                     <div class="member-avatar">
-                        <div class="avatar-placeholder">👨‍🔧</div>
+                    <img class="avatar-placeholder" src="https://sf-static.upanhlaylink.com/img/image_2025110833276bdc67229523a24c42edd7575ab1.jpg" alt="Nguyễn Phạm Thiên Phước">
                     </div>
                     <h3>Nguyễn Phạm Thiên Phước</h3>
                     <p class="member-role">Head of Operations</p>
-                    <p class="member-bio">Với kinh nghiệm quản lý vận hành, anh Phước đảm bảo mọi hoạt động của Bookverse diễn ra suôn sẻ, từ giao dịch đến hỗ trợ khách hàng.</p>
+                    <p class="member-bio">Với kinh nghiệm quản lý vận hành, Thiên Phước đảm bảo mọi hoạt động của Bookverse diễn ra suôn sẻ, từ giao dịch đến hỗ trợ khách hàng.</p>
                 </div>
             </div>
         </div>
@@ -185,7 +186,7 @@ include 'includes/header.php';
                             <span class="contact-icon">📍</span>
                             <div>
                                 <strong>Địa chỉ</strong>
-                                <p>Hà Nội, Việt Nam</p>
+                                <p>TP Hồ Chí Minh, Việt Nam</p>
                             </div>
                         </div>
                     </div>

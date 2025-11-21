@@ -18,9 +18,22 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [true, 'Password is required'],
+        required: function() {
+            // Password not required if user signed up via OAuth
+            return !this.oauthProvider;
+        },
         minlength: [6, 'Password must be at least 6 characters'],
         select: false
+    },
+    // OAuth provider information
+    oauthProvider: {
+        type: String,
+        enum: ['google', 'facebook'],
+        default: null
+    },
+    oauthId: {
+        type: String,
+        default: null
     },
     role: {
         type: String,
@@ -143,17 +156,31 @@ userSchema.index({ email: 1 }, { unique: true });
 userSchema.index({ username: 1 }, { unique: true });
 userSchema.index({ role: 1 });
 userSchema.index({ 'sellerProfile.isApproved': 1 });
+// Partial index: chỉ unique khi oauthProvider không null (chỉ cho OAuth users)
+userSchema.index(
+    { oauthProvider: 1, oauthId: 1 }, 
+    { 
+        unique: true, 
+        partialFilterExpression: { oauthProvider: { $ne: null } }
+    }
+);
 
 // Hash password before saving
 userSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) return next();
+    // Skip password hashing if user is using OAuth and password is not set
+    if (!this.isModified('password') || (this.oauthProvider && !this.password)) return next();
     
-    try {
-        const salt = await bcrypt.genSalt(12);
-        this.password = await bcrypt.hash(this.password, salt);
+    // If password is being set/modified, hash it
+    if (this.password) {
+        try {
+            const salt = await bcrypt.genSalt(12);
+            this.password = await bcrypt.hash(this.password, salt);
+            next();
+        } catch (error) {
+            next(error);
+        }
+    } else {
         next();
-    } catch (error) {
-        next(error);
     }
 });
 

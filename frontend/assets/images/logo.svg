@@ -1,0 +1,61 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient definitions -->
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="30" cy="30" r="28" fill="url(#bookGradient)" filter="url(#shadow)"/>
+  
+  <!-- Book icon -->
+  <g transform="translate(15, 15)">
+    <!-- Book base -->
+    <rect x="2" y="8" width="26" height="20" rx="2" fill="white" opacity="0.9"/>
+    
+    <!-- Book pages -->
+    <rect x="4" y="10" width="22" height="16" rx="1" fill="white"/>
+    
+    <!-- Book spine -->
+    <rect x="2" y="8" width="4" height="20" rx="1" fill="url(#bookGradient)"/>
+    
+    <!-- Book lines -->
+    <line x1="8" y1="14" x2="22" y2="14" stroke="#667eea" stroke-width="0.8" opacity="0.6"/>
+    <line x1="8" y1="17" x2="22" y2="17" stroke="#667eea" stroke-width="0.8" opacity="0.6"/>
+    <line x1="8" y1="20" x2="22" y2="20" stroke="#667eea" stroke-width="0.8" opacity="0.6"/>
+    <line x1="8" y1="23" x2="22" y2="23" stroke="#667eea" stroke-width="0.8" opacity="0.6"/>
+    
+    <!-- Bookmark -->
+    <rect x="20" y="6" width="3" height="8" fill="#ff6b6b" rx="1"/>
+    
+    <!-- Sparkle effects -->
+    <circle cx="8" cy="12" r="1" fill="#ffd93d" opacity="0.8"/>
+    <circle cx="24" cy="18" r="0.8" fill="#ffd93d" opacity="0.6"/>
+    <circle cx="12" cy="24" r="0.6" fill="#ffd93d" opacity="0.7"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="70" y="25" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="24" font-weight="800" fill="url(#textGradient)">
+    Bookverse
+  </text>
+  
+  <!-- Tagline -->
+  <text x="70" y="42" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="12" font-weight="500" fill="#6b7280" opacity="0.8">
+    Your Book Universe
+  </text>
+</svg>
