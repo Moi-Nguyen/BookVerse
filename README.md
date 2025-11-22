@@ -502,7 +502,7 @@ QA Specialist & Tester
 
 ## 📞 Liên hệ & Hỗ trợ
 
-- 📧 **Email**: support@bookverse.com
+- 📧 **Email**: support@bookversevn.store
 - 🌐 **Website**: https://bookversevn.store
 - 💬 **Discord**: [Join our community](https://discord.gg/bookverse)
 - 📱 **GitHub Issues**: [Report a bug](https://github.com/yourusername/bookverse/issues)
