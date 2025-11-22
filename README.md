@@ -452,7 +452,7 @@ Dự án này được cấp phép dưới **MIT License** - xem file [LICENSE](
 <tr>
 <td align="center">
 <a href="https://github.com/phucdevz">
-<img src="https://via.placeholder.com/100](https://sf-static.upanhlaylink.com/img/image_202511089b5b2e799534e4f134f145b24f3a5c9c.jpg" width="100px;" alt=""/>
+<img src="https://sf-static.upanhlaylink.com/img/image_202511089b5b2e799534e4f134f145b24f3a5c9c.jpg" width="100px;" alt=""/>
 <br />
 <sub><b>Nguyễn Trường Phục</b></sub>
 </a>
@@ -461,7 +461,7 @@ Trưởng Dự Án & Full-Stack Developer
 </td>
 <td align="center">
 <a href="https://github.com/moi-nguyen">
-<img src="https://via.placeholder.com/100](https://sf-static.upanhlaylink.com/img/image_20251108375114e21252134cc88d460fae885669.jpg" width="100px;" alt=""/>
+<img src="https://sf-static.upanhlaylink.com/img/image_20251108375114e21252134cc88d460fae885669.jpg" width="100px;" alt=""/>
 <br />
 <sub><b>Nguyễn Đức Lượng</b></sub>
 </a>
@@ -470,7 +470,7 @@ Backend Developer & API Specialist
 </td>
 <td align="center">
 <a href="https://github.com/DuwcsAnh1710">
-<img src="https://via.placeholder.com/100](https://sf-static.upanhlaylink.com/img/image_202511084dc4b589b7aa2cece2daf1d9368d487c.jpg" width="100px;" alt=""/>
+<img src="https://sf-static.upanhlaylink.com/img/image_202511084dc4b589b7aa2cece2daf1d9368d487c.jpg" width="100px;" alt=""/>
 <br />
 <sub><b>Lê Đức Anh</b></sub>
 </a>
@@ -479,7 +479,7 @@ Frontend Developer & UI/UX Designer
 </td>
 <td align="center">
 <a href="https://github.com/MinHuy_nnn">
-<img src="https://via.placeholder.com/100](https://sf-static.upanhlaylink.com/img/image_202511082f3364753177a94e5833f8abf85a30d8.jpg" width="100px;" alt=""/>
+<img src="https://sf-static.upanhlaylink.com/img/image_202511082f3364753177a94e5833f8abf85a30d8.jpg" width="100px;" alt=""/>
 <br />
 <sub><b>Nguyễn Minh Huy</b></sub>
 </a>
