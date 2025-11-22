@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📚 Bookverse
+# Sàn Thương Mại Mua Bán Sách - Bookverse
 
 **Nền tảng thương mại điện tử hiện đại cho sách - Nơi sách gặp gỡ công nghệ**
 
@@ -125,8 +125,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/bookverse.git
-cd bookverse
+git clone https://github.com/moi-nguyen/BookVerse.git
+cd BookVerse
 
 # Khởi động tất cả services
 docker-compose up -d
@@ -145,8 +145,8 @@ docker-compose --profile seed run seed
 #### 1. Clone repository
 
 ```bash
-git clone https://github.com/yourusername/bookverse.git
-cd bookverse
+git clone https://github.com/moi-nguyen/BookVerse.git
+cd BookVerse
 ```
 
 #### 2. Thiết lập Backend
@@ -451,8 +451,8 @@ Dự án này được cấp phép dưới **MIT License** - xem file [LICENSE](
 <table>
 <tr>
 <td align="center">
-<a href="https://github.com/yourusername">
-<img src="https://via.placeholder.com/100" width="100px;" alt=""/>
+<a href="https://github.com/phucdevz">
+<img src="[https://via.placeholder.com/100](https://sf-static.upanhlaylink.com/img/image_202511089b5b2e799534e4f134f145b24f3a5c9c.jpg)" width="100px;" alt=""/>
 <br />
 <sub><b>Nguyễn Trường Phục</b></sub>
 </a>
@@ -460,8 +460,8 @@ Dự án này được cấp phép dưới **MIT License** - xem file [LICENSE](
 Trưởng Dự Án & Full-Stack Developer
 </td>
 <td align="center">
-<a href="https://github.com/yourusername">
-<img src="https://via.placeholder.com/100" width="100px;" alt=""/>
+<a href="https://github.com/moi-nguyen">
+<img src="[https://via.placeholder.com/100](https://sf-static.upanhlaylink.com/img/image_20251108375114e21252134cc88d460fae885669.jpg)" width="100px;" alt=""/>
 <br />
 <sub><b>Nguyễn Đức Lượng</b></sub>
 </a>
@@ -469,8 +469,8 @@ Trưởng Dự Án & Full-Stack Developer
 Backend Developer & API Specialist
 </td>
 <td align="center">
-<a href="https://github.com/yourusername">
-<img src="https://via.placeholder.com/100" width="100px;" alt=""/>
+<a href="https://github.com/DuwcsAnh1710">
+<img src="[https://via.placeholder.com/100](https://sf-static.upanhlaylink.com/img/image_202511084dc4b589b7aa2cece2daf1d9368d487c.jpg)" width="100px;" alt=""/>
 <br />
 <sub><b>Lê Đức Anh</b></sub>
 </a>
@@ -478,8 +478,8 @@ Backend Developer & API Specialist
 Frontend Developer & UI/UX Designer
 </td>
 <td align="center">
-<a href="https://github.com/yourusername">
-<img src="https://via.placeholder.com/100" width="100px;" alt=""/>
+<a href="https://github.com/MinHuy_nnn">
+<img src="[https://via.placeholder.com/100](https://sf-static.upanhlaylink.com/img/image_202511082f3364753177a94e5833f8abf85a30d8.jpg)" width="100px;" alt=""/>
 <br />
 <sub><b>Nguyễn Minh Huy</b></sub>
 </a>
@@ -487,8 +487,8 @@ Frontend Developer & UI/UX Designer
 Database Architect & DevOps Engineer
 </td>
 <td align="center">
-<a href="https://github.com/yourusername">
-<img src="https://via.placeholder.com/100" width="100px;" alt=""/>
+<a href="https://github.com/PhuocNguyencoder">
+<img src="https://sf-static.upanhlaylink.com/img/image_2025110833276bdc67229523a24c42edd7575ab1.jpg" width="100px;" alt=""/>
 <br />
 <sub><b>Nguyễn Phạm Thiên Phước</b></sub>
 </a>
