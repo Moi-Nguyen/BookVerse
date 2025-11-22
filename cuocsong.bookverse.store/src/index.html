@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Triết lý Cuộc sống | Bookverse Series</title>
+    <meta
+      name="description"
+      content="Chuỗi Triết lý Cuộc sống #1 ghi lại hành trình sống chậm, lắng nghe bản thân và nuôi dưỡng bình an mỗi ngày."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="navbar">
+          <div class="brand">
+            <img src="assets/images/logo-text-new.svg" alt="Bookverse" width="140" height="32" />
+          </div>
+          <nav>
+            <ul>
+              <li>Trang chủ</li>
+              <li>Suy niệm</li>
+              <li>Thực hành</li>
+              <li>Liên hệ</li>
+            </ul>
+          </nav>
+          <div class="controls">
+            <button class="theme-toggle" data-theme-toggle>Dark mode</button>
+          </div>
+        </div>
+        <section class="hero">
+          <article class="hero-card">
+            <img
+              src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=900&q=80"
+              alt="Triết lý cuộc sống"
+              data-hero-image
+            />
+            <div class="hero-content">
+              <p class="tag">Triết lý sống</p>
+              <h1 data-hero-title>Triết lý cuộc sống: Sống chậm để hiểu mình</h1>
+              <p data-hero-summary>
+                Serie Triết lý Cuộc sống #1 mời bạn dừng lại giữa nhịp sống vội, lắng nghe hơi thở và trở về với giá trị bình an bên trong.
+              </p>
+              <a class="post-meta" data-hero-link href="post.html">Đọc suy niệm</a>
+            </div>
+          </article>
+        </section>
+      </div>
+    </header>
+
+    <div class="floating-ad floating-ad--left" data-ad-card>
+      <button class="floating-ad__close" type="button" aria-label="Đóng quảng cáo" data-ad-close>&times;</button>
+      <a class="floating-ad__link" href="https://www.bookversevn.store/" target="_blank" rel="noopener noreferrer">
+        <img
+          class="floating-ad__image"
+          src="https://images.unsplash.com/photo-1478144592103-25e218a04891?auto=format&fit=crop&w=480&q=80"
+          alt="Nấu ăn trong 5 phút"
+        />
+        <div class="floating-ad__content">
+          <p class="tag">Nấu ăn 5 phút</p>
+          <h3>Nấu nhanh, ăn lành</h3>
+          <p>Bộ công thức giúp bạn chuẩn bị bữa ăn chỉ trong 5 phút mà vẫn trọn dinh dưỡng.</p>
+          <span class="floating-ad__cta">Khám phá ngay</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="floating-ad floating-ad--right" data-ad-card>
+      <button class="floating-ad__close" type="button" aria-label="Đóng quảng cáo" data-ad-close>&times;</button>
+      <a class="floating-ad__link" href="https://www.bookversevn.store/" target="_blank" rel="noopener noreferrer">
+        <img
+          class="floating-ad__image"
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=480&q=80"
+          alt="Bookverse Podcast"
+        />
+        <div class="floating-ad__content">
+          <p class="tag">Bookverse Podcast</p>
+          <h3>15 phút tĩnh lặng</h3>
+          <p>Đeo tai nghe, thả lỏng và nghe podcast để tìm lại nhịp thở bình an cùng Bookverse.</p>
+          <span class="floating-ad__cta">Nghe tập mới</span>
+        </div>
+      </a>
+    </div>
+
+    <main class="container">
+      <section class="cta">
+        <p>
+          Chuỗi Triết lý Cuộc sống #1 giúp bạn nuôi dưỡng tỉnh thức bằng câu chuyện giản dị, thực hành chánh niệm
+          và lời nhắc dịu dàng mỗi ngày. Theo dõi <strong>blog.bookversevn.store</strong> để nhận bản mới nhất.
+        </p>
+      </section>
+
+      <section>
+        <div class="section-bar">
+        <h2 class="section-title">Bài viết mới</h2>
+        <div class="search">
+          <label for="search-input" class="sr-only">Tìm bài viết</label>
+          <input type="text" id="search-input" placeholder="Tìm theo tiêu đề, mô tả, tác giả..." data-search-input />
+        </div>
+        </div>
+        <div class="posts-grid" data-post-grid></div>
+        <p class="search-result" data-search-result></p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <img src="assets/images/logo-text-new.svg" alt="Bookverse" width="140" height="32" />
+          </div>
+          <p>
+            Bookverse.vn giới thiệu serie Triết lý Cuộc sống #1: hành trình giữ tâm tĩnh tại, sống tử tế với chính
+            mình và cộng đồng.
+          </p>
+        </div>
+        <div>
+          <h4>Serie</h4>
+          <p>Giới thiệu</p>
+          <p>Podcast Tỉnh thức</p>
+          <p>Bản tin email</p>
+        </div>
+        <div>
+          <h4>Danh mục</h4>
+          <p>Suy ngẫm</p>
+          <p>Thiền thở</p>
+          <p>Sống tối giản</p>
+        </div>
+      </div>
+      <div class="container" style="margin-top: 24px; color: var(--color-muted); font-size: 0.85rem;">
+        &copy; 2024 Bookverse Series. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

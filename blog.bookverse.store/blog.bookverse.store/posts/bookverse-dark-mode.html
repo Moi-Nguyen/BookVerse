@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trải nghiệm dark mode đầu tiên cho sàn sách Bookverse</title>
+    <meta
+      name="description"
+      content="Khám phá cách Bookverse thiết kế dark mode cho độc giả: tiêu chuẩn AA, typography, trải nghiệm đọc đêm và đồng bộ toàn hệ sinh thái."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="navbar">
+          <div class="brand">
+            <img src="../assets/images/logo-text-new.svg" alt="Bookverse" width="140" height="32" />
+          </div>
+          <nav>
+            <ul>
+              <li><a href="../index.html">Trang chủ</a></li>
+              <li><a href="../index.html#latest">Bài nổi bật</a></li>
+              <li><a href="../index.html#community">Cộng đồng</a></li>
+              <li><a href="../index.html#contact">Liên hệ</a></li>
+            </ul>
+          </nav>
+          <div class="controls">
+            <button class="theme-toggle" data-theme-toggle>Dark mode</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <a class="back-link" href="../index.html">← Về trang chủ</a>
+      <article class="single-post">
+        <p class="tag">UX/UI</p>
+        <h1>Trải nghiệm dark mode đầu tiên cho sàn sách Bookverse</h1>
+        <div class="meta">Tùng Đỗ • 25 Feb 2024 • 6 phút đọc</div>
+        <img
+          src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=70"
+          alt="Giao diện dark mode Bookverse"
+        />
+
+        <p>
+          Khi Bookverse ra mắt dark mode, mục tiêu của đội ngũ không chỉ là đổi màu nền. Chúng tôi muốn xây dựng một trải nghiệm đọc sâu, nơi độc giả có thể ngồi hàng giờ trên <strong>bookversevn.store</strong> hoặc <strong>blog.bookversevn.store</strong> mà không mỏi mắt.
+          Dark mode trở thành một phần trong chiến lược “Reading-first UX”, đồng bộ trên web, ứng dụng, Bookverse Club và cả trình quản trị của seller.
+        </p>
+
+        <h2>Tiêu chuẩn màu sắc đạt AA+</h2>
+        <p>
+          Bookverse sử dụng bảng màu “Midnight Verse” với nền #0f172a, chữ chính #f3f4f6, điểm nhấn #9cc6ff. Tất cả đều vượt chuẩn tương phản AA (WCAG 2.1). Chúng tôi thử nghiệm 18 biến thể màu trước khi chọn phiên bản chính thức.
+          Với nội dung dài trên blog, line-height được tăng lên 1.75, cỡ chữ 18px để người đọc không phải nheo mắt. Các đường phân cách dùng màu #1f2937 nhằm tạo chiều sâu nhưng không gây chói.
+        </p>
+
+        <h2>Thiết kế đặt độc giả làm trung tâm</h2>
+        <p>
+          Dark mode của Bookverse được xây dựng bằng hệ thống token. Khi độc giả chuyển chủ đề, mọi thành phần – từ button, card, icon đến biểu đồ trong Bookverse Data Lab – đều thay đổi đồng thời. Điều này giúp trải nghiệm nhất quán dù độc giả đang đọc blog, mua sách hay xem dashboard của mình.
+        </p>
+
+        <p>
+          Để tránh “ghosting” khi cuộn dài, chúng tôi áp dụng kỹ thuật layer blur, giảm shadow đậm, tăng spacing giữa các card. Những chi tiết nhỏ khiến người dùng cảm nhận trang nhẹ hơn, phù hợp cho những buổi đọc đêm.
+        </p>
+
+        <h2>Đồng bộ đa nền tảng</h2>
+        <p>
+          Từ website tới ứng dụng iOS/Android, Bookverse dùng chung tập biến CSS/Design Token. Khi đội thiết kế cập nhật màu mới, hệ thống tự động đẩy sang codebase. Người dùng đăng nhập trên một thiết bị sẽ thấy theme được đồng bộ sang thiết bị khác thông qua Bookverse ID.
+        </p>
+
+        <p>
+          Bookverse Retail (chuỗi pop-up bookstore) cũng mang gam màu này vào không gian vật lý bằng bảng đèn LED và bục trưng bày. Khách bước từ cửa hàng vào website sẽ không cảm thấy đứt quãng trải nghiệm.
+        </p>
+
+        <h2>Tác động đến hành vi đọc</h2>
+        <p>
+          Sau 3 tháng thử nghiệm dark mode, thời lượng đọc trung bình trên blog tăng 24%. Tỷ lệ bật dark mode vào ban đêm đạt 68%. Người dùng gắn bó hơn với Bookverse Club vì có thể đọc hàng trăm bình luận mà không bị chói mắt.
+          Đối với seller, dashboard dark mode giúp họ theo dõi số liệu vào ca tối dễ chịu hơn, giảm sai sót khi nhập dữ liệu.
+        </p>
+
+        <h2>Quy trình nghiên cứu người dùng</h2>
+        <p>
+          Đội UX mời 60 độc giả tham gia usability test. Họ được yêu cầu đọc một bài blog dài, thêm sách vào giỏ, viết review trong dark mode. Nhờ ghi nhận chuyển động mắt và phản hồi real-time, chúng tôi phát hiện cần tăng kích thước chữ đề mục, giảm độ đậm icon.
+          Những cải tiến này giúp dark mode ra mắt đã mượt mà, ít lỗi.
+        </p>
+
+        <div class="quote-card">
+          “Dark mode của Bookverse không phải xu hướng phù phiếm. Đó là cách chúng tôi thể hiện sự tôn trọng đối với thời gian và đôi mắt của độc giả.”
+        </div>
+
+        <h2>Hướng dẫn kích hoạt</h2>
+        <ol>
+          <li>Truy cập <strong>bookversevn.store</strong> hoặc <strong>blog.bookversevn.store</strong>.</li>
+          <li>Nhấn nút “Dark mode” ở góc phải thanh điều hướng.</li>
+          <li>Bookverse sẽ ghi nhớ lựa chọn trên mọi thiết bị thông qua tài khoản Bookverse ID.</li>
+        </ol>
+
+        <h2>Dark mode và SEO onsite</h2>
+        <p>
+          Một số người lo ngại dark mode có thể ảnh hưởng tới khả năng đọc của bot tìm kiếm. Bookverse xử lý bằng cách giữ cấu trúc HTML sạch, tối ưu semantic tag và sử dụng CSS Variables thay vì chèn lớp nền mới.
+          Nhờ đó, Google vẫn thu thập nội dung như bình thường. Chúng tôi còn điều chỉnh màu link, heading để đảm bảo tỉ lệ click tự nhiên không bị giảm do màu quá nhạt.
+        </p>
+
+        <p>
+          Bản cập nhật dark mode được công bố cùng 3 bài blog hướng dẫn, giúp tạo hơn 20.000 lượt truy cập tự nhiên trong tuần đầu. Các chỉ số Core Web Vitals vẫn duy trì ở mức “Good”. Điều này chứng minh thiết kế đẹp và SEO hoàn toàn có thể song hành.
+        </p>
+
+        <h2>Lộ trình tiếp theo</h2>
+        <p>
+          Năm 2024, Bookverse sẽ ra mắt “Focus Mode” – chế độ đọc loại bỏ mọi yếu tố gây xao nhãng trong dark mode. Chúng tôi cũng nghiên cứu tính năng tự động chuyển dark mode theo nhịp sinh học của người đọc: hệ thống nhận biết bạn đang đọc trên điện thoại ban đêm hay ban ngày để gợi ý chế độ phù hợp.
+        </p>
+
+        <p>
+          Dark mode chỉ là bước khởi đầu. Xa hơn, Bookverse muốn xây dựng “Adaptive UI” cho phép độc giả tuỳ chỉnh font, khoảng cách, độ ấm màu. Mọi tuỳ chỉnh sẽ được lưu trong hồ sơ đọc và đồng bộ sang sách điện tử, podcast transcript và cả sự kiện offline.
+        </p>
+
+        <h2>CTA: Thử dark mode ngay hôm nay</h2>
+        <p>
+          Nếu bạn chưa trải nghiệm, hãy ghé <a href="https://bookversevn.store" target="_blank" rel="noopener">bookversevn.store</a>, chuyển sang dark mode và chia sẻ cảm nhận trên Bookverse Club. Chúng tôi luôn đón nhận góp ý để tiếp tục tinh chỉnh UX.
+        </p>
+      </article>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <img src="../assets/images/logo-text-new.svg" alt="Bookverse" width="140" height="32" />
+          </div>
+          <p>Bookverse.store • Sàn thương mại điện tử dành riêng cho sách.</p>
+        </div>
+        <div>
+          <h4>Sitemap</h4>
+          <p><a href="../index.html">Trang chủ</a></p>
+          <p><a href="../index.html#about">Brand Story</a></p>
+          <p><a href="../index.html#contact">Liên hệ</a></p>
+        </div>
+        <div>
+          <h4>Liên hệ</h4>
+          <p>partnership@bookversevn.store</p>
+          <p>+84 909 123 456</p>
+        </div>
+      </div>
+      <div class="container" style="margin-top: 24px; color: var(--color-muted); font-size: 0.85rem;">
+        © 2024 Bookverse. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

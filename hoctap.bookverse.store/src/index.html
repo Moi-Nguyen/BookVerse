@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookverse Study Hub | Hành trình học tập chánh niệm</title>
+    <meta
+      name="description"
+      content="Bookverse Study Hub chia sẻ bài thực hành tĩnh lặng, lộ trình tự học 10 phút và tài nguyên nuôi dưỡng sự tập trung dành cho người bận rộn."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="ad-panel ad-panel--left" data-ad-panel="left">
+      <button class="ad-panel__close" data-ad-close aria-label="Đóng quảng cáo">&times;</button>
+      <div class="ad-panel__content">
+        <a href="http://bookversevn.store" target="_blank" rel="noreferrer">
+          <img
+            src="assets/images/ads/bookverse-ebook.jpg"
+            alt="Bookverse ebook promo"
+            class="ad-panel__image"
+          />
+        </a>
+        <p class="ad-panel__tag">Bookverse Series</p>
+        <h3>Đọc chậm, học sâu</h3>
+        <p>
+          Tải ebook Triết lý Cuộc sống và nhận bản tin chánh niệm hằng tuần từ Bookverse. Bài tập viết phản
+          tư gửi lúc 6h sáng thứ Hai giúp bạn giữ nhịp học tập nhẹ nhàng.
+        </p>
+      </div>
+    </aside>
+
+    <aside class="ad-panel ad-panel--right" data-ad-panel="right">
+      <button class="ad-panel__close" data-ad-close aria-label="Đóng quảng cáo">&times;</button>
+      <div class="ad-panel__content">
+        <a href="http://bookversevn.store" target="_blank" rel="noreferrer">
+          <img
+            src="assets/images/ads/bookverse-podcast.jpg"
+            alt="Bookverse podcast promo"
+            class="ad-panel__image"
+          />
+        </a>
+        <p class="ad-panel__tag">Bookverse Podcast</p>
+        <h3>15 phút tĩnh lặng</h3>
+        <p>
+          Nghỉ tay, bật podcast Bookverse để nghe lại những câu chuyện nuôi dưỡng sự tập trung. Tập mới
+          phát hành mỗi sáng thứ Hai cùng danh sách gợi ý thực hành.
+        </p>
+      </div>
+    </aside>
+
+    <header>
+      <div class="container">
+        <div class="navbar">
+          <div class="brand">
+            <img src="assets/images/logo-text-new.svg" alt="Bookverse Study Hub" width="140" height="32" />
+          </div>
+          <nav>
+            <ul>
+              <li>Trang chủ</li>
+              <li>Chủ đề</li>
+              <li>Thực hành</li>
+              <li>Liên hệ</li>
+            </ul>
+          </nav>
+          <div class="controls">
+            <button class="theme-toggle" data-theme-toggle>Dark mode</button>
+          </div>
+        </div>
+        <section class="hero">
+          <article class="hero-card">
+            <img
+              src="assets/images/ads/bookverse-ebook.jpg"
+              alt="Nhật ký tĩnh lặng Bookverse"
+              data-hero-image
+            />
+            <div class="hero-content">
+              <p class="tag">Chủ đề nổi bật</p>
+              <h1 data-hero-title>Bản đồ bình an cho ngày bận rộn</h1>
+              <p data-hero-summary>
+                Thiết kế khung học tập 3 mảng: chăm sóc thân, luyện tĩnh tâm và nuôi dưỡng tri thức để bạn
+                tái tạo năng lượng trong nhịp sống hiện đại.
+              </p>
+              <a class="post-meta" data-hero-link href="../posts/ban-do-binh-an-trong-nha.html">Đọc bài hướng dẫn</a>
+            </div>
+          </article>
+        </section>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="cta">
+        <p>
+          Bookverse Study Hub là không gian học tập chánh niệm: bài viết dài, hướng dẫn thực hành và đề bài
+          ghi chép 10 phút mỗi ngày. Theo dõi bản tin tại
+          <strong>learning.bookversevn.store</strong> để không bỏ lỡ chủ đề mới.
+        </p>
+      </section>
+
+      <section>
+        <div class="section-bar">
+          <h2 class="section-title">Bài viết mới</h2>
+          <div class="search">
+            <label for="search-input" class="sr-only">Tìm bài học</label>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Nhập chủ đề, tác giả, trạng thái cảm xúc..."
+              data-search-input
+            />
+          </div>
+        </div>
+        <div class="posts-grid" data-post-grid></div>
+        <p class="search-result" data-search-result></p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <img src="assets/images/logo-text-new.svg" alt="Bookverse Study Hub" width="140" height="32" />
+          </div>
+          <p>
+            Bookverse Study Hub chia sẻ bản tin chuyên sâu, lớp thực hành trực tuyến và tài nguyên tự học giúp
+            bạn nuôi dưỡng sự tỉnh thức mỗi ngày.
+          </p>
+        </div>
+        <div>
+          <h4>Danh mục</h4>
+          <p>Suy niệm</p>
+          <p>Thực hành</p>
+          <p>Tài liệu</p>
+        </div>
+        <div>
+          <h4>Liên hệ</h4>
+          <p>hello@bookversevn.store</p>
+          <p>+84 909 123 456</p>
+        </div>
+      </div>
+      <div class="container" style="margin-top: 24px; color: var(--color-muted); font-size: 0.85rem;">
+        &copy; 2024 Bookverse Study Hub. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
